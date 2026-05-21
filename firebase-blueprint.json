@@ -1,0 +1,45 @@
+{
+  "entities": {
+    "UserPublic": {
+      "title": "UserPublic",
+      "description": "Public user profile data",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string", "maxLength": 100 }
+      },
+      "required": ["displayName"]
+    },
+    "UserPrivate": {
+      "title": "UserPrivate",
+      "description": "Private user info like email",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" }
+      },
+      "required": ["email"]
+    },
+    "Favorite": {
+      "title": "Favorite",
+      "description": "A favorited song",
+      "type": "object",
+      "properties": {
+        "songId": { "type": "string" }
+      },
+      "required": ["songId"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/public": {
+      "schema": { "$ref": "#/entities/UserPublic" },
+      "description": "Public profiles"
+    },
+    "/users/{userId}/private/info": {
+      "schema": { "$ref": "#/entities/UserPrivate" },
+      "description": "Private user information"
+    },
+    "/users/{userId}/favorites/{songId}": {
+      "schema": { "$ref": "#/entities/Favorite" },
+      "description": "User favorite songs"
+    }
+  }
+}
